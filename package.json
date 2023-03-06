@@ -12,11 +12,13 @@
   "dependencies": {
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.3",
+    "local-storage": "^2.0.0",
     "next": "13.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "styled-components": "^5.3.8",
-    "swr": "^2.0.4"
+    "swr": "^2.0.4",
+    "use-local-storage-state": "^18.2.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.5.1",
