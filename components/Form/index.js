@@ -1,11 +1,14 @@
-export default function ActivitiesForm({ setActivities, activities }) {
+import { uid } from "uid";
+
+export default function ActivitiesForm({ updateActivities, activities }) {
   function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
-    setActivities([
+    updateActivities([
       ...activities,
       {
+        id: uid(),
         name: formData.get("name"),
         date: formData.get("date"),
         time: formData.get("time"),
@@ -15,6 +18,7 @@ export default function ActivitiesForm({ setActivities, activities }) {
     form.name.focus();
   }
   console.log(activities);
+
   return (
     <form onSubmit={handleSubmit}>
       <fieldset>
