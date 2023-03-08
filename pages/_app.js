@@ -1,6 +1,6 @@
 import GlobalStyle from "@/styles";
 import Head from "next/head";
-import useSWR from "swr";
+/* import useSWR from "swr"; */
 
 /* const URL = `https://weatherapi-com.p.rapidapi.com/forecast.json?q=Leipzig&days=3`; */
 
@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }) {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "d38672a904msh78a82c0fa65980fp169e25jsn3794bb9a59e1",
+      "X-RapidAPI-Key": process.env.REACT_APP_API_KEY ,
       "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
     },
   };
