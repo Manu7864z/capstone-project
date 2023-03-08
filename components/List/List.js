@@ -10,16 +10,11 @@ export default function List({
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
-    console.log(formData);
     handleEditDone(event, id, formData);
     form.reset();
   }
 
-  // funktioniert, aber gibt jedem input den gleichen wert, aus dem Feld in dem man Enter gedrückt hat
-
   function handleEditDone(event, id, formData) {
-    console.log(formData);
-    console.log(event);
     if (formData !== undefined) {
       setEditing(!editing);
       setActivities(
@@ -47,7 +42,6 @@ export default function List({
       <ul>
         {activities?.map((entry) => (
           <li key={entry.id}>
-            {/* {console.log(id)} */}
             <h2>{entry.name}</h2>
             <p>{entry.date}</p>
             <p>{entry.time}</p>
@@ -57,26 +51,11 @@ export default function List({
               <form onSubmit={(event) => handleSubmit(event, entry.id)}>
                 <fieldset>
                   <label htmlFor="name">Name of Activity: </label>
-                  <input
-                    type="text"
-                    name="name"
-                    defaultValue={entry.name}
-                    /* onKeyDown={(event) => handleEditDone(event, entry.id)} */
-                  />
+                  <input type="text" name="name" defaultValue={entry.name} />
                   <label htmlFor="date">Date: </label>
-                  <input
-                    type="date"
-                    name="date"
-                    defaultValue={entry.date}
-                    /* onKeyDown={(event) => handleSubmit(event, entry.id)} */
-                  />
+                  <input type="date" name="date" defaultValue={entry.date} />
                   <label htmlFor="time">Time: </label>
-                  <input
-                    type="time"
-                    name="time"
-                    defaultValue={entry.time}
-                    /* onKeyDown={(event) => handleEditDone(event, entry.id)} */
-                  />
+                  <input type="time" name="time" defaultValue={entry.time} />
                   <button type="Submit">Done</button>
                 </fieldset>
               </form>

@@ -17,31 +17,6 @@ export default function ActivitiesPage() {
     setEditing(!editing);
   };
 
-  /* // funktioniert, aber gibt jedem input den gleichen wert, aus dem Feld in dem man Enter gedrückt hat
-  const handleEditDone = (event, id) => {
-    console.log(event.target.value);
-    if (event.key === "Enter") {
-      setEditing(!editing);
-      setActivities(
-        activities.map((activity) => {
-          console.log(activity.id, id);
-          if (activity.id === id) {
-            return [
-              {
-                ...activity,
-                name: event.target.value,
-                date: event.target.value,
-                time: event.target.value,
-              },
-            ];
-          } else {
-            return activity;
-          }
-        })
-      );
-    }
-  }; */
-
   return (
     <>
       <Form setActivities={setActivities} activities={activities}></Form>
@@ -52,7 +27,6 @@ export default function ActivitiesPage() {
         onEditing={handleEditing}
         editing={editing}
         setEditing={setEditing}
-        /* handleEditDone={handleEditDone} */
       ></List>
     </>
   );
