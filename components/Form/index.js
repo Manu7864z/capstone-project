@@ -1,11 +1,11 @@
 import { uid } from "uid";
 
-export default function ActivitiesForm({ updateActivities, activities }) {
+export default function ActivitiesForm({ setActivities, activities }) {
   function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
-    updateActivities([
+    setActivities([
       ...activities,
       {
         id: uid(),
@@ -17,7 +17,6 @@ export default function ActivitiesForm({ updateActivities, activities }) {
     form.reset();
     form.name.focus();
   }
-  console.log(activities);
 
   return (
     <form onSubmit={handleSubmit}>

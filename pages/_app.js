@@ -1,6 +1,6 @@
 import GlobalStyle from "@/styles";
 import Head from "next/head";
-import useSWR from "swr";
+/* import useSWR from "swr"; */
 
 /* const URL = `https://weatherapi-com.p.rapidapi.com/forecast.json?q=Leipzig&days=3`; */
 
