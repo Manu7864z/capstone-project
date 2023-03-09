@@ -6,7 +6,13 @@ import "react-calendar/dist/Calendar.css";
 
 export default function Home({ data, activities }) {
   const router = useRouter();
-  const [weekDay, setWeekDay] = useState(new Date().toISOString().slice(0, 10));
+  const [weekDay, setWeekDay] = useState(
+    new Date().toLocaleDateString("default", { year: "numeric" }) +
+      "-" +
+      new Date().toLocaleDateString("default", { month: "2-digit" }) +
+      "-" +
+      new Date().toLocaleDateString("default", { day: "2-digit" })
+  );
 
   const [showCalendar, setShowCalendar] = useState(false);
   console.log(weekDay);
@@ -16,8 +22,13 @@ export default function Home({ data, activities }) {
   };
 
   const handleDateChange = (date) => {
-    console.log(date);
-    setWeekDay(date.toISOString().slice(0, 10));
+    setWeekDay(
+      date.toLocaleDateString("default", { year: "numeric" }) +
+        "-" +
+        date.toLocaleDateString("default", { month: "2-digit" }) +
+        "-" +
+        date.toLocaleDateString("default", { day: "2-digit" })
+    );
     setShowCalendar(!showCalendar);
   };
 
