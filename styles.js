@@ -9,6 +9,13 @@ export default createGlobalStyle`
   body {
     margin: 0;
     font-family: system-ui;
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
   }
-  
+
+ :root {
+    --color-primary: #000400;
+    --color-secondary: #a9fac5;}
+
+
 `;
