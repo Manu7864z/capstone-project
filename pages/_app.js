@@ -4,7 +4,7 @@ import useSWR from "swr";
 import styled from "styled-components";
 import useLocalStorageState from "use-local-storage-state";
 
-const URL = `https://api.weatherapi.com/v1/forecast.json?key=${process.env.NEXT_PUBLIC_REACT_APP_API_KEY}&q=Leipzig&days=3&aqi=no&alerts=no`;
+const URL = `https://api.weatherapi.com/v1/forecast.json?key=552906322dc9408a883144606230903&q=Leipzig&days=3&aqi=no&alerts=no`;
 
 export default function App({ Component, pageProps }) {
   const [activities, setActivities] = useLocalStorageState("activities", {
