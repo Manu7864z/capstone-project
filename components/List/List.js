@@ -40,22 +40,24 @@ export default function List({
     <div>
       <h1>Your planned Actions</h1>
       <ul>
-        {activities?.map((entry) => (
-          <li key={entry.id}>
-            <h2>{entry.name}</h2>
-            <p>{entry.date}</p>
-            <p>{entry.time}</p>
-            <button onClick={() => onDeleteActivity(entry.id)}>X</button>
-            <button onClick={() => onEditing(entry.id)}>Edit</button>
+        {activities?.map(({ id, date, time, name }) => (
+          <li key={id}>
+            <h2>{name}</h2>
+            <p>
+              {date.slice(8, 10)}.{date.slice(5, 7)}.{date.slice(0, 4)}
+            </p>
+            <p>{time}</p>
+            <button onClick={() => onDeleteActivity(id)}>X</button>
+            <button onClick={() => onEditing(id)}>Edit</button>
             {editing === false ? null : (
-              <form onSubmit={(event) => handleSubmit(event, entry.id)}>
+              <form onSubmit={(event) => handleSubmit(event, id)}>
                 <fieldset>
                   <label htmlFor="name">Name of Activity: </label>
-                  <input type="text" name="name" defaultValue={entry.name} />
+                  <input type="text" name="name" defaultValue={name} />
                   <label htmlFor="date">Date: </label>
-                  <input type="date" name="date" defaultValue={entry.date} />
+                  <input type="date" name="date" defaultValue={date} />
                   <label htmlFor="time">Time: </label>
-                  <input type="time" name="time" defaultValue={entry.time} />
+                  <input type="time" name="time" defaultValue={time} />
                   <button type="Submit">Done</button>
                 </fieldset>
               </form>
