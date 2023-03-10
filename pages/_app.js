@@ -4,26 +4,22 @@ import useSWR from "swr";
 import styled from "styled-components";
 import useLocalStorageState from "use-local-storage-state";
 
-const URL = `https://api.weatherapi.com/v1/forecast.json?key=552906322dc9408a883144606230903&q=Leipzig&days=3&aqi=no&alerts=no`;
+const URL = `https://api.weatherapi.com/v1/forecast.json?key=${process.env.NEXT_PUBLIC_REACT_APP_API_KEY}&q=Leipzig&days=3&aqi=no&alerts=no`;
 
 export default function App({ Component, pageProps }) {
   const [activities, setActivities] = useLocalStorageState("activities", {
     defaultValue: [],
   });
-  const fetcher = (url) => fetch(url).then((res) => res.json());
 
-  /*  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": process.env.REACT_APP_API_KEY,
-      "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
-    },
-  }; */
+  const fetcher = (url) => fetch(url).then((res) => res.json());
 
   const { data, error, isLoading } = useSWR(URL, fetcher);
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
-  console.log(data);
+
+  function handleDeleteActivity(idToRemove) {
+    setActivities(activities.filter((activity) => activity.id !== idToRemove));
+  }
 
   return (
     <>
@@ -37,6 +33,7 @@ export default function App({ Component, pageProps }) {
         data={data}
         activities={activities}
         setActivities={setActivities}
+        onDeleteActivity={handleDeleteActivity}
       />
     </>
   );

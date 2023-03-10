@@ -2,12 +2,12 @@ import Form from "../components/Form/index.js";
 import List from "@/components/List/List.js";
 import { useState } from "react";
 
-export default function ActivitiesPage({ activities, setActivities }) {
+export default function ActivitiesPage({
+  activities,
+  setActivities,
+  onDeleteActivity,
+}) {
   const [editing, setEditing] = useState(false);
-
-  function handleDeleteActivity(idToRemove) {
-    setActivities(activities.filter((activity) => activity.id !== idToRemove));
-  }
 
   const handleEditing = () => {
     setEditing(!editing);
@@ -19,7 +19,7 @@ export default function ActivitiesPage({ activities, setActivities }) {
       <List
         activities={activities}
         setActivities={setActivities}
-        onDeleteActivity={handleDeleteActivity}
+        onDeleteActivity={onDeleteActivity}
         onEditing={handleEditing}
         editing={editing}
         setEditing={setEditing}

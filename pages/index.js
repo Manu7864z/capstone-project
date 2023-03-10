@@ -4,8 +4,9 @@ import Calendar from "react-calendar";
 import styled from "styled-components";
 import "react-calendar/dist/Calendar.css";
 
-export default function Home({ data, activities }) {
+export default function Home({ data, activities, onDeleteActivity }) {
   const router = useRouter();
+  const [checkedActivities, setCheckedActivities] = useState(false);
   const [weekDay, setWeekDay] = useState(
     new Date().toLocaleDateString("default", { year: "numeric" }) +
       "-" +
@@ -15,7 +16,6 @@ export default function Home({ data, activities }) {
   );
 
   const [showCalendar, setShowCalendar] = useState(false);
-  console.log(weekDay);
 
   const handleShowCalendar = () => {
     setShowCalendar(!showCalendar);
@@ -32,6 +32,14 @@ export default function Home({ data, activities }) {
     setShowCalendar(!showCalendar);
   };
 
+  const handleCheckActivities = (id) => {
+    setCheckedActivities(!checkedActivities);
+
+    if (checkedActivities === true) {
+      onDeleteActivity(id);
+    }
+  };
+
   return (
     <main>
       <h3>Weather Condition today: {data.current.condition.text} </h3>
@@ -45,14 +53,16 @@ export default function Home({ data, activities }) {
 
       <ul>
         {activities.map((activity) => {
-          console.log(activity.date, weekDay);
           if (activity.date === weekDay) {
             return (
               <li key={activity.id}>
                 <h2>{activity.name}</h2>
                 <p>{activity.date}</p>
                 <p>{activity.time}</p>
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  onClick={() => handleCheckActivities(activity.id)}
+                />
               </li>
             );
           } else {
