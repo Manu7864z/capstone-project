@@ -38,7 +38,7 @@ export default function Home({ data, activities }) {
       <h4>Temperature: {data.current.temp_c} °C</h4>
       <p>Check your planned Activities:</p>
       <StyledButton type="button" onClick={handleShowCalendar}>
-        Open Calendar
+        {weekDay.slice(8, 10)}.{weekDay.slice(5, 7)}.{weekDay.slice(0, 4)}
       </StyledButton>
 
       {showCalendar ? <StyledCalendar onClickDay={handleDateChange} /> : null}
