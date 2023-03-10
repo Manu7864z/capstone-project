@@ -34,10 +34,7 @@ export default function Home({ data, activities, onDeleteActivity }) {
 
   const handleCheckActivities = (id) => {
     setCheckedActivities(!checkedActivities);
-
-    if (checkedActivities === true) {
-      onDeleteActivity(id);
-    }
+    onDeleteActivity(id);
   };
 
   return (
