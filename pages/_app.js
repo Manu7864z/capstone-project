@@ -4,10 +4,14 @@ import useSWR from "swr";
 import styled from "styled-components";
 import useLocalStorageState from "use-local-storage-state";
 import Navbar from "@/components/NavBar";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 const URL = `https://api.weatherapi.com/v1/forecast.json?key=${process.env.NEXT_PUBLIC_REACT_APP_API_KEY}&q=Leipzig&days=3&aqi=no&alerts=no`;
 
 export default function App({ Component, pageProps }) {
+  const { pathname } = useRouter();
+
   const [activities, setActivities] = useLocalStorageState("activities", {
     defaultValue: [],
   });
@@ -36,7 +40,7 @@ export default function App({ Component, pageProps }) {
         setActivities={setActivities}
         onDeleteActivity={handleDeleteActivity}
       />
-      <Navbar />
+      <Navbar pathname={pathname} />
     </>
   );
 }

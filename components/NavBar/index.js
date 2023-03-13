@@ -1,52 +1,42 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { AiFillHome } from "react-icons/ai";
-import { useState } from "react";
-import { AiOutlineHome } from "react-icons/ai";
-import { RiCalendarTodoFill } from "react-icons/ri";
-import { RiCalendarTodoLine } from "react-icons/ri";
-import { BsFilePersonFill } from "react-icons/bs";
-import { BsFilePerson } from "react-icons/bs";
+import { AiFillHome, AiOutlineHome } from "react-icons/ai";
+import { RiCalendarTodoFill, RiCalendarTodoLine } from "react-icons/ri";
+import { BsFilePersonFill, BsFilePerson } from "react-icons/bs";
+import { useRouter } from "next/router";
 
-export default function Navbar() {
-  const [home, setHome] = useState(false);
-  const [newTodo, setNewTodo] = useState(false);
-  const [about, setAbout] = useState(false);
-
-  function handleNavigation() {
-    setHome(false);
-    setNewTodo(false);
-    setAbout(false);
-  }
+export default function Navbar({ pathname }) {
+  const { push } = useRouter();
 
   return (
     <StyledNav>
       <StyledLink
         href="/activitiesForm"
         onClick={() => {
-          handleNavigation();
-          setNewTodo((prevState) => !prevState);
+          push("/activitiesForm");
         }}
       >
-        {newTodo ? <RiCalendarTodoFill /> : <RiCalendarTodoLine />}
+        {pathname === "/activitiesForm" ? (
+          <RiCalendarTodoFill />
+        ) : (
+          <RiCalendarTodoLine />
+        )}
       </StyledLink>
       <StyledLink
         href="/"
         onClick={() => {
-          handleNavigation();
-          setHome((prevState) => !prevState);
+          push("/");
         }}
       >
-        {home ? <AiFillHome /> : <AiOutlineHome />}
+        {pathname === "/" ? <AiFillHome /> : <AiOutlineHome />}
       </StyledLink>
       <StyledLink
         href="/"
         onClick={() => {
-          handleNavigation();
-          setAbout((prevState) => !prevState);
+          push("/");
         }}
       >
-        {about ? <BsFilePersonFill /> : <BsFilePerson />}
+        {pathname === "/" ? <BsFilePersonFill /> : <BsFilePerson />}
       </StyledLink>
     </StyledNav>
   );
