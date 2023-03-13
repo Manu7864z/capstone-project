@@ -1,3 +1,5 @@
+import styled from "styled-components";
+
 export default function List({
   activities,
   setActivities,
@@ -39,7 +41,7 @@ export default function List({
   return (
     <div>
       <h1>Your planned Actions</h1>
-      <ul>
+      <StyledUL>
         {activities?.map(({ id, date, time, name }) => (
           <li key={id}>
             <h2>{name}</h2>
@@ -64,7 +66,11 @@ export default function List({
             )}
           </li>
         ))}
-      </ul>
+      </StyledUL>
     </div>
   );
 }
+
+const StyledUL = styled.ul`
+  margin-bottom: 55px;
+`;
