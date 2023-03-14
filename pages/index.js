@@ -38,7 +38,7 @@ export default function Home({ data, activities, onDeleteActivity }) {
   };
 
   return (
-    <main>
+    <StyledMain>
       <h3>Weather Condition today: {data.current.condition.text} </h3>
       <h4>Temperature: {data.current.temp_c} °C</h4>
       <p>Check your planned Activities:</p>
@@ -71,9 +71,13 @@ export default function Home({ data, activities, onDeleteActivity }) {
       <button type="button" onClick={() => router.push("/activitiesForm")}>
         Neue Aktivitäten erstellen
       </button>
-    </main>
+    </StyledMain>
   );
 }
+
+const StyledMain = styled.main`
+  margin-bottom: 55px;
+`;
 
 const StyledButton = styled.button`
   position: absolute;
@@ -90,10 +94,51 @@ const StyledCalendar = styled(Calendar)`
   right: 20px;
   border: 3px outset grey;
   border-radius: 5px;
-  background-color: white;
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
   box-shadow: 5px 5px 5px grey;
 
   .react-calendar__navigation {
-    background-color: lightcoral;
+    background-color: var(--color-secondary);
+  }
+
+  .react-calendar__navigation__label {
+    color: var(--color-primary);
+  }
+
+  .react-calendar__navigation__arrow {
+    color: var(--color-primary);
+  }
+
+  .react-calendar__month-view__days__day {
+    color: var(--color-secondary);
+
+    &:hover {
+      background-color: var(--color-secondary);
+      color: var(--color-primary);
+    }
+  }
+
+  .react-calendar__month-view__days__day--neighboringMonth {
+    color: var(--color-secondary);
+  }
+
+  .react-calendar__month-view__days__day--weekend {
+    color: red;
+
+    &:hover {
+      background-color: var(--color-secondary);
+      color: var(--color-primary);
+    }
+  }
+
+  .react-calendar__month-view__days__day--today {
+    color: var(--color-primary);
+    background-color: var(--color-secondary);
+  }
+
+  .react-calendar__tile--now {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
   }
 `;

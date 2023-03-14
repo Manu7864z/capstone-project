@@ -3,10 +3,14 @@ import Head from "next/head";
 import useSWR from "swr";
 import styled from "styled-components";
 import useLocalStorageState from "use-local-storage-state";
+import Navbar from "@/components/NavBar";
+import { useRouter } from "next/router";
 
 const URL = `https://api.weatherapi.com/v1/forecast.json?key=${process.env.NEXT_PUBLIC_REACT_APP_API_KEY}&q=Leipzig&days=3&aqi=no&alerts=no`;
 
 export default function App({ Component, pageProps }) {
+  const { pathname } = useRouter();
+
   const [activities, setActivities] = useLocalStorageState("activities", {
     defaultValue: [],
   });
@@ -35,6 +39,7 @@ export default function App({ Component, pageProps }) {
         setActivities={setActivities}
         onDeleteActivity={handleDeleteActivity}
       />
+      <Navbar pathname={pathname} />
     </>
   );
 }
@@ -49,10 +54,10 @@ const Heading = styled.h1`
   width: 90%;
   font-size: 3rem;
   font-weight: 400;
-  color: lightskyblue;
-  background-color: darkblue;
+  color: var(--color-secondary);
+  background-color: rgba(0, 0, 0, 0.5);
   opacity: 0.9;
-  border: 3px outset white;
+  border: 3px outset var(--color-secondary);
   border-radius: 5px;
-  box-shadow: 0 5px 5px 2px grey;
+  box-shadow: 0 2px 5px 2px var(--color-secondary);
 `;
