@@ -44,7 +44,7 @@ export default function List({
           <li key={id}>
             <h2>{name}</h2>
             <p>
-              {date.slice(8, 10)}.{date.slice(5, 7)}.{date.slice(0, 4)}
+              {date?.slice(8, 10)}.{date?.slice(5, 7)}.{date?.slice(0, 4)}
             </p>
             <p>{time}</p>
             <button onClick={() => onDeleteActivity(id)}>X</button>
