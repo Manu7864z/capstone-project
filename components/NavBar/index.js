@@ -31,12 +31,12 @@ export default function Navbar({ pathname }) {
         {pathname === "/" ? <AiFillHome /> : <AiOutlineHome />}
       </StyledLink>
       <StyledLink
-        href="/"
+        href="/about"
         onClick={() => {
-          push("/");
+          push("/about");
         }}
       >
-        {pathname === "/" ? <BsFilePersonFill /> : <BsFilePerson />}
+        {pathname === "/about" ? <BsFilePersonFill /> : <BsFilePerson />}
       </StyledLink>
     </StyledNav>
   );

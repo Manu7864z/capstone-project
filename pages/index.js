@@ -39,8 +39,8 @@ export default function Home({ data, activities, onDeleteActivity }) {
 
   return (
     <StyledMain>
-      <h3>Weather Condition today: {data.current.condition.text} </h3>
-      <h4>Temperature: {data.current.temp_c} °C</h4>
+      <h3>Weather Condition today: {data?.current.condition.text} </h3>
+      <h4>Temperature: {data?.current.temp_c} °C</h4>
       <p>Check your planned Activities:</p>
       <StyledButton type="button" onClick={handleShowCalendar}>
         {weekDay.slice(8, 10)}.{weekDay.slice(5, 7)}.{weekDay.slice(0, 4)}
