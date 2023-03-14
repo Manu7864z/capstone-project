@@ -21,7 +21,6 @@ export default function List({
       setEditing(!editing);
       setActivities(
         activities.map((activity) => {
-          console.log(activity.id, id);
           if (activity.id === id) {
             return {
               ...activity,
@@ -36,7 +35,6 @@ export default function List({
       );
     }
   }
-  console.log(activities);
 
   return (
     <div>
