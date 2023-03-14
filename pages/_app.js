@@ -5,12 +5,13 @@ import useLocalStorageState from "use-local-storage-state";
 import Navbar from "@/components/NavBar";
 import { useRouter } from "next/router";
 import { StyledHeader } from "@/styles";
+import { useEffect } from "react";
 
 export default function App({ Component, pageProps }) {
   const [personalInfo, setPersonalInfo] = useLocalStorageState("personalInfo", {
     defaultValue: { name: "", location: "Leipzig" },
   });
-  console.log(personalInfo.location);
+
   const URL = `https://api.weatherapi.com/v1/forecast.json?key=${process.env.NEXT_PUBLIC_REACT_APP_API_KEY}&q=${personalInfo?.location}&days=3&aqi=no&alerts=no`;
 
   const { pathname } = useRouter();
