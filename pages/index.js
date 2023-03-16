@@ -49,17 +49,24 @@ export default function Home({ data, activities, onDeleteActivity }) {
       {showCalendar ? <StyledCalendar onClickDay={handleDateChange} /> : null}
 
       <ul>
-        {activities.map((activity) => {
-          if (activity.date === weekDay) {
+        {activities.map(({ time, date, name, id }) => {
+          if (date === weekDay) {
             return (
-              <li key={activity.id}>
-                <h2>{activity.name}</h2>
-                <p>{activity.date}</p>
-                <p>{activity.time}</p>
-                <input
-                  type="checkbox"
-                  onClick={() => handleCheckActivities(activity.id)}
-                />
+              <li key={id}>
+                <h2>{name}</h2>
+                <p>
+                  {date.slice(8, 10)}.{date.slice(5, 7)}.{date.slice(0, 4)}
+                </p>
+                <p>Um {time} Uhr</p>
+                <StyledDiv>
+                  <label htmlFor="checkbox">Done?</label>
+                  <StyledCheckbox
+                    id="checkbox"
+                    name="checkbox"
+                    type="checkbox"
+                    onClick={() => handleCheckActivities(activity.id)}
+                  />
+                </StyledDiv>
               </li>
             );
           } else {
@@ -87,7 +94,7 @@ const StyledButton = styled.button`
 
 const StyledCalendar = styled(Calendar)`
   height: 290px;
-  width: 230px;
+  width: 250px;
   display: block;
   position: absolute;
   top: 230px;
@@ -95,32 +102,33 @@ const StyledCalendar = styled(Calendar)`
   border: 3px outset grey;
   border-radius: 5px;
   background-color: var(--color-primary);
-  color: var(--color-secondary);
+  color: var(--color-quinary);
   box-shadow: 5px 5px 5px grey;
+  z-index: 1;
 
   .react-calendar__navigation {
-    background-color: var(--color-secondary);
+    background-color: var(--color-tertiary);
   }
 
   .react-calendar__navigation__label {
-    color: var(--color-primary);
+    color: var(--color-quinary);
   }
 
   .react-calendar__navigation__arrow {
-    color: var(--color-primary);
+    color: var(--color-quinary);
   }
 
   .react-calendar__month-view__days__day {
-    color: var(--color-secondary);
+    color: var(--color-quinary);
 
     &:hover {
       background-color: var(--color-secondary);
-      color: var(--color-primary);
+      color: var(--color-quaternary);
     }
   }
 
   .react-calendar__month-view__days__day--neighboringMonth {
-    color: var(--color-secondary);
+    color: var(--color-quinary);
   }
 
   .react-calendar__month-view__days__day--weekend {
@@ -128,17 +136,38 @@ const StyledCalendar = styled(Calendar)`
 
     &:hover {
       background-color: var(--color-secondary);
-      color: var(--color-primary);
+      color: var(--color-quaternary);
     }
   }
 
   .react-calendar__month-view__days__day--today {
-    color: var(--color-primary);
-    background-color: var(--color-secondary);
+    color: var(--color-quinary);
+    background-color: var(--color-quaternary);
   }
 
   .react-calendar__tile--now {
-    background-color: var(--color-secondary);
-    color: var(--color-primary);
+    background-color: var(--color-tertiary);
+    color: var(--color-quinary);
   }
+`;
+const StyledCheckbox = styled.input`
+  height: 20px;
+  width: 20px;
+  border: 2px solid var(--color-quaternary);
+
+  &:checked {
+    background-color: var(--color-quaternary);
+  }
+`;
+
+const StyledDiv = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+  border: 2px solid var(--color-primary);
+  border-radius: 5px;
+  background-color: var(--color-primary);
+  color: var(--color-quinary);
 `;

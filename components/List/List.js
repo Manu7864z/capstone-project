@@ -39,7 +39,7 @@ export default function List({
   return (
     <div>
       <h1>Your planned Actions</h1>
-      <StyledUL>
+      <ul>
         {activities?.map(({ id, date, time, name }) => (
           <li key={id}>
             <h2>{name}</h2>
@@ -47,7 +47,12 @@ export default function List({
               {date?.slice(8, 10)}.{date?.slice(5, 7)}.{date?.slice(0, 4)}
             </p>
             <p>{time}</p>
-            <button onClick={() => onDeleteActivity(id)}>X</button>
+            <StyledDeleteButton
+              type="Button"
+              onClick={() => onDeleteActivity(id)}
+            >
+              X
+            </StyledDeleteButton>
             <button onClick={() => onEditing(id)}>Edit</button>
             {editing === false ? null : (
               <form onSubmit={(event) => handleSubmit(event, id)}>
@@ -64,11 +69,20 @@ export default function List({
             )}
           </li>
         ))}
-      </StyledUL>
+      </ul>
     </div>
   );
 }
 
-const StyledUL = styled.ul`
-  margin-bottom: 55px;
+const StyledDeleteButton = styled.button`
+  position: absolute;
+  background: rgba(189, 29, 20, 0.5);
+  right: -12px;
+  top: -12px;
+  font-weight: bold;
+  transition: 0.4s;
+
+  &:hover {
+    background: rgba(189, 29, 20, 1);
+  }
 `;
