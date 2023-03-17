@@ -5,7 +5,6 @@ import useLocalStorageState from "use-local-storage-state";
 import Navbar from "@/components/NavBar";
 import { useRouter } from "next/router";
 import { StyledHeader } from "@/styles";
-import { useEffect } from "react";
 
 export default function App({ Component, pageProps }) {
   const [personalInfo, setPersonalInfo] = useLocalStorageState("personalInfo", {

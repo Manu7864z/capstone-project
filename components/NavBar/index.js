@@ -4,6 +4,7 @@ import { AiFillHome, AiOutlineHome } from "react-icons/ai";
 import { RiCalendarTodoFill, RiCalendarTodoLine } from "react-icons/ri";
 import { BsFilePersonFill, BsFilePerson } from "react-icons/bs";
 import { useRouter } from "next/router";
+import { StyledNav } from "@/styles";
 
 export default function Navbar({ pathname }) {
   const { push } = useRouter();
@@ -42,32 +43,27 @@ export default function Navbar({ pathname }) {
   );
 }
 
-const StyledNav = styled.nav`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #1c1c1c;
-  color: var(--color-secondary);
-  border-top: 2px outset var(--color-secondary);
-  height: 50px;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-`;
-
 const StyledLink = styled(Link)`
-  color: var(--color-secondary);
+  color: var(--color-primary);
+  backdrop-filter: blur(1px);
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: var(--border-radius);
+  box-shadow: 0px 35px 68px 0px rgba(10, 17, 40, 0.5),
+    inset 0px -5px 16px 0px rgba(10, 17, 40, 0.6),
+    inset 0px 11px 28px 0px rgb(255, 255, 255);
   text-decoration: none;
+  height: 30px;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1.2rem;
   font-weight: 400;
   padding: 5px 10px 3px 10px;
-  border-radius: 5px;
-  border: 2px solid var(--color-secondary);
-  transition: all 0.3 ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: all 0.4 ease-in-out;
   &:hover {
-    background-color: var(--color-secondary);
+    background-color: var(--color-tertiary);
     color: var(--color-primary);
   }
 `;
