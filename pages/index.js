@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import Calendar from "react-calendar";
 import styled from "styled-components";
 import "react-calendar/dist/Calendar.css";
-import Image from "next/image";
 
 export default function Home({ data, activities, onDeleteActivity }) {
   const router = useRouter();
