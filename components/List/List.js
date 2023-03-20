@@ -38,7 +38,7 @@ export default function List({
 
   return (
     <div>
-      <h1>Your planned Actions</h1>
+      <StyledH1>Your planned Activities:</StyledH1>
       <ul>
         {activities?.map(({ id, date, time, name }) => (
           <li key={id}>
@@ -85,4 +85,9 @@ const StyledDeleteButton = styled.button`
   &:hover {
     background: rgba(189, 29, 20, 1);
   }
+`;
+
+const StyledH1 = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
 `;

@@ -46,7 +46,6 @@ export default function Home({ data, activities, onDeleteActivity }) {
         <h5>Forecast for the next 3 days</h5>
         <StyledUl>
           {weatherData?.map(({ date, day }) => {
-            console.log(day);
             return (
               <li key={date}>
                 <p>
@@ -201,11 +200,11 @@ const StyledCalendar = styled(Calendar)`
   position: absolute;
   top: 230px;
   right: 20px;
-  border: 3px outset grey;
+  border: 2px outset grey;
   border-radius: 5px;
   background-color: var(--color-primary);
   color: var(--color-quinary);
-  box-shadow: 5px 5px 5px grey;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.5);
   z-index: 1;
 
   .react-calendar__navigation {
