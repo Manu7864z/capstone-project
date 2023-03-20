@@ -1,3 +1,5 @@
+import styled from "styled-components";
+
 export default function AboutPage({ personalInfo, setPersonalInfo }) {
   const { name, location } = personalInfo;
 
@@ -14,10 +16,10 @@ export default function AboutPage({ personalInfo, setPersonalInfo }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <StyledForm onSubmit={handleSubmit}>
       <label htmlFor="name">Enter your name: </label>
       <input type="text" name="name" required defaultValue={name} />
-      <p> Hello my name is {name}.</p>
+      <p> Hello my name is {name}. 😁</p>
       <label htmlFor="location">My recent location: </label>
       <select name="location" defaultValue={location}>
         <option value="Berlin">Berlin</option>
@@ -36,8 +38,33 @@ export default function AboutPage({ personalInfo, setPersonalInfo }) {
         <option value="Saarbrücken">Saarbrücken</option>
         <option value="Erfurt">Erfurt</option>
       </select>
-      <p> Today I am in {location}.</p>
+      <p> Today I am in {location}. 🚀</p>
       <button type="submit">Save</button>
-    </form>
+    </StyledForm>
   );
 }
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 20px 10px 0 10px;
+  padding: 10px;
+
+  label {
+    margin: 10px;
+  }
+  input {
+    margin: 10px;
+  }
+  select {
+    margin: 10px;
+  }
+  button {
+    margin: 10px;
+  }
+  p {
+    margin: 10px;
+  }
+`;
