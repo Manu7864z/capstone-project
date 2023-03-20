@@ -16,7 +16,7 @@ export default function List({
     form.reset();
   }
 
-  function handleEditDone(event, id, formData) {
+  function handleEditDone(id, formData) {
     if (formData !== undefined) {
       setEditing(!editing);
       setActivities(
@@ -53,19 +53,21 @@ export default function List({
             >
               X
             </StyledDeleteButton>
+
             <button onClick={() => onEditing(id)}>Edit</button>
-            {editing === false ? null : (
-              <form onSubmit={(event) => handleSubmit(event, id)}>
-                <fieldset>
-                  <label htmlFor="name">Name of Activity: </label>
-                  <input type="text" name="name" defaultValue={name} />
-                  <label htmlFor="date">Date: </label>
-                  <input type="date" name="date" defaultValue={date} />
-                  <label htmlFor="time">Time: </label>
-                  <input type="time" name="time" defaultValue={time} />
-                  <button type="Submit">Done</button>
-                </fieldset>
-              </form>
+            {editing === id && (
+              <StyledEditForm
+                key={id}
+                onSubmit={(event) => handleSubmit(event, id)}
+              >
+                <label htmlFor="name">Name of Activity: </label>
+                <input type="text" name="name" defaultValue={name} />
+                <label htmlFor="date">Date: </label>
+                <input type="date" name="date" defaultValue={date} />
+                <label htmlFor="time">Time: </label>
+                <input type="time" name="time" defaultValue={time} />
+                <button type="Submit">Done</button>
+              </StyledEditForm>
             )}
           </li>
         ))}
@@ -90,4 +92,22 @@ const StyledDeleteButton = styled.button`
 const StyledH1 = styled.h1`
   font-size: 1.5em;
   text-align: center;
+`;
+
+const StyledEditForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px;
+
+  label {
+    margin: 2px;
+  }
+  input {
+    margin: 2px;
+  }
+  button {
+    margin: 2px;
+  }
 `;

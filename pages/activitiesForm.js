@@ -7,10 +7,10 @@ export default function ActivitiesPage({
   setActivities,
   onDeleteActivity,
 }) {
-  const [editing, setEditing] = useState(false);
+  const [editing, setEditing] = useState();
 
-  const handleEditing = () => {
-    setEditing(!editing);
+  const handleEditing = (id) => {
+    setEditing(id);
   };
 
   return (
