@@ -37,7 +37,7 @@ export default function List({
   }
 
   return (
-    <div>
+    <>
       <StyledH1>Your planned Activities:</StyledH1>
       <ul>
         {activities?.map(({ id, date, time, name }) => (
@@ -72,7 +72,7 @@ export default function List({
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 }
 
