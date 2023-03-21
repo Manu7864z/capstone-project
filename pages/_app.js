@@ -5,6 +5,7 @@ import useLocalStorageState from "use-local-storage-state";
 import Navbar from "@/components/NavBar";
 import { useRouter } from "next/router";
 import { StyledHeader } from "@/styles";
+import styled from "styled-components";
 
 export default function App({ Component, pageProps }) {
   const [personalInfo, setPersonalInfo] = useLocalStorageState("personalInfo", {
@@ -22,7 +23,12 @@ export default function App({ Component, pageProps }) {
 
   const { data, error, isLoading } = useSWR(URL, fetcher);
   if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading)
+    return (
+      <StyledLoadingDiv>
+        <p>Loading...</p>
+      </StyledLoadingDiv>
+    );
 
   function handleDeleteActivity(idToRemove) {
     setActivities(activities.filter((activity) => activity.id !== idToRemove));
@@ -34,7 +40,7 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>WeatherPlanar</title>
       </Head>
-      <StyledHeader>WeatherPlanar</StyledHeader>
+      {pathname === "/" ? null : <StyledHeader>WeatherPlanar</StyledHeader>}
       <Component
         {...pageProps}
         data={data}
@@ -44,7 +50,49 @@ export default function App({ Component, pageProps }) {
         personalInfo={personalInfo}
         setPersonalInfo={setPersonalInfo}
       />
-      <Navbar pathname={pathname} />
+      {pathname === "/" ? null : <Navbar pathname={pathname} />}
     </>
   );
 }
+
+const StyledLoadingDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 130vh;
+  width: 130vw;
+
+  background: rgb(10, 17, 40);
+  background: -moz-linear-gradient(
+      15deg,
+      rgba(10, 17, 40, 1) 22%,
+      rgba(0, 31, 84, 1) 66%,
+      rgba(3, 64, 120, 1) 91%
+    )
+    center center fixed no-repeat;
+  background: -webkit-linear-gradient(
+      15deg,
+      rgba(10, 17, 40, 1) 22%,
+      rgba(0, 31, 84, 1) 66%,
+      rgba(3, 64, 120, 1) 91%
+    )
+    center center fixed no-repeat;
+  background: linear-gradient(
+      15deg,
+      rgba(10, 17, 40, 1) 22%,
+      rgba(0, 31, 84, 1) 66%,
+      rgba(3, 64, 120, 1) 91%
+    )
+    center center fixed no-repeat;
+
+  background-size: cover;
+
+  p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--color-quinary);
+  }
+`;

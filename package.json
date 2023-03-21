@@ -14,6 +14,7 @@
     "eslint-config-next": "13.2.3",
     "immer": "^9.0.19",
     "local-storage": "^2.0.0",
+    "lottie-react": "^2.4.0",
     "next": "13.2.3",
     "react": "18.2.0",
     "react-calendar": "^4.0.0",
