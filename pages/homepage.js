@@ -16,10 +16,10 @@ export default function Home({ data, activities, onDeleteActivity }) {
       new Date().toLocaleDateString("default", { day: "2-digit" })
   );
 
-  const [showCalendar, setShowCalendar] = useState(false);
+  const [isCalenderVisiable, setIsCalenderVisiable] = useState(false);
 
   const handleShowCalendar = () => {
-    setShowCalendar(!showCalendar);
+    setIsCalenderVisiable(!isCalenderVisiable);
   };
 
   const handleDateChange = (date) => {
@@ -30,7 +30,7 @@ export default function Home({ data, activities, onDeleteActivity }) {
         "-" +
         date.toLocaleDateString("default", { day: "2-digit" })
     );
-    setShowCalendar(!showCalendar);
+    setIsCalenderVisiable(!isCalenderVisiable);
   };
 
   const handleCheckActivities = (id) => {
@@ -64,7 +64,9 @@ export default function Home({ data, activities, onDeleteActivity }) {
         {weekDay.slice(0, 4)}
       </StyledCalendarButton>
 
-      {showCalendar ? <StyledCalendar onClickDay={handleDateChange} /> : null}
+      {isCalenderVisiable ? (
+        <StyledCalendar onClickDay={handleDateChange} />
+      ) : null}
 
       <ul>
         {activities.map(({ time, date, name, id }) => {
