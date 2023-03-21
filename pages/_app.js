@@ -34,7 +34,7 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>WeatherPlanar</title>
       </Head>
-      <StyledHeader>WeatherPlanar</StyledHeader>
+      {pathname === "/" ? null : <StyledHeader>WeatherPlanar</StyledHeader>}
       <Component
         {...pageProps}
         data={data}
@@ -44,7 +44,7 @@ export default function App({ Component, pageProps }) {
         personalInfo={personalInfo}
         setPersonalInfo={setPersonalInfo}
       />
-      <Navbar pathname={pathname} />
+      {pathname === "/" ? null : <Navbar pathname={pathname} />}
     </>
   );
 }

@@ -24,12 +24,12 @@ export default function Navbar({ pathname }) {
         )}
       </StyledLink>
       <StyledLink
-        href="/"
+        href="/homepage"
         onClick={() => {
-          push("/");
+          push("/homepage");
         }}
       >
-        {pathname === "/" ? <AiFillHome /> : <AiOutlineHome />}
+        {pathname === "/homepage" ? <AiFillHome /> : <AiOutlineHome />}
       </StyledLink>
       <StyledLink
         href="/about"
