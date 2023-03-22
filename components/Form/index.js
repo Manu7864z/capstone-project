@@ -1,8 +1,15 @@
 import { uid } from "uid";
 import styled from "styled-components";
+import { useState } from "react";
 
 export default function ActivitiesForm({ setActivities, activities }) {
+  const [submitMessageIsVisible, setSubmitMessageIsVisible] = useState(false);
+
   function handleSubmit(event) {
+    setSubmitMessageIsVisible(true);
+    setTimeout(() => {
+      setSubmitMessageIsVisible(false);
+    }, 3000);
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
@@ -29,6 +36,7 @@ export default function ActivitiesForm({ setActivities, activities }) {
         <input type="date" id="date" name="date" required />
         <label htmlFor="time">Time: </label>
         <input type="time" name="time" required />
+        {submitMessageIsVisible && <p>Activity added! ✅</p>}
       </StyledFormElements>
       <StyledSubmitButton type="submit">Submit</StyledSubmitButton>
     </form>

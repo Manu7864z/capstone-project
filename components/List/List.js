@@ -39,23 +39,11 @@ export default function List({
   return (
     <>
       <StyledH1>Your planned Activities:</StyledH1>
+
       <ul>
         {activities?.map(({ id, date, time, name }) => (
           <li key={id}>
-            <h2>{name}</h2>
-            <p>
-              {date?.slice(8, 10)}.{date?.slice(5, 7)}.{date?.slice(0, 4)}
-            </p>
-            <p>{time}</p>
-            <StyledDeleteButton
-              type="Button"
-              onClick={() => onDeleteActivity(id)}
-            >
-              X
-            </StyledDeleteButton>
-
-            <button onClick={() => onEditing(id)}>Edit</button>
-            {editing === id && (
+            {editing === id ? (
               <StyledEditForm
                 key={id}
                 onSubmit={(event) => handleSubmit(event, id)}
@@ -66,8 +54,23 @@ export default function List({
                 <input type="date" name="date" defaultValue={date} />
                 <label htmlFor="time">Time: </label>
                 <input type="time" name="time" defaultValue={time} />
-                <button type="Submit">Done</button>
+                <button type="submit">Done</button>
               </StyledEditForm>
+            ) : (
+              <>
+                <h2>{name}</h2>
+                <p>
+                  {date?.slice(8, 10)}.{date?.slice(5, 7)}.{date?.slice(0, 4)}
+                </p>
+                <p>{time}</p>
+                <StyledDeleteButton
+                  type="button"
+                  onClick={() => onDeleteActivity(id)}
+                >
+                  X
+                </StyledDeleteButton>
+                <button onClick={() => onEditing(id)}>Edit</button>
+              </>
             )}
           </li>
         ))}

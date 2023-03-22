@@ -6,6 +6,7 @@ import Navbar from "@/components/NavBar";
 import { useRouter } from "next/router";
 import { StyledHeader } from "@/styles";
 import styled from "styled-components";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function App({ Component, pageProps }) {
   const [personalInfo, setPersonalInfo] = useLocalStorageState("personalInfo", {
@@ -14,7 +15,7 @@ export default function App({ Component, pageProps }) {
 
   const URL = `https://api.weatherapi.com/v1/forecast.json?key=${process.env.NEXT_PUBLIC_REACT_APP_API_KEY}&q=${personalInfo?.location}&days=3&aqi=no&alerts=no`;
 
-  const { pathname } = useRouter();
+  const { pathname, route } = useRouter();
   const [activities, setActivities] = useLocalStorageState("activities", {
     defaultValue: [],
   });
@@ -36,20 +37,39 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
+      {pathname === "/" ? null : <StyledHeader>WeatherPlanar</StyledHeader>}
       <GlobalStyle />
       <Head>
         <title>WeatherPlanar</title>
       </Head>
-      {pathname === "/" ? null : <StyledHeader>WeatherPlanar</StyledHeader>}
-      <Component
-        {...pageProps}
-        data={data}
-        activities={activities}
-        setActivities={setActivities}
-        onDeleteActivity={handleDeleteActivity}
-        personalInfo={personalInfo}
-        setPersonalInfo={setPersonalInfo}
-      />
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={route}
+          initial={{
+            opacity: 0,
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+          }}
+          animate={{
+            opacity: 1,
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+          }}
+          exit={{
+            opacity: 0,
+            clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)",
+          }}
+          transition={{ duration: 0.75 }}
+        >
+          <Component
+            {...pageProps}
+            data={data}
+            activities={activities}
+            setActivities={setActivities}
+            onDeleteActivity={handleDeleteActivity}
+            personalInfo={personalInfo}
+            setPersonalInfo={setPersonalInfo}
+          />
+        </motion.div>
+      </AnimatePresence>
       {pathname === "/" ? null : <Navbar pathname={pathname} />}
     </>
   );
@@ -57,13 +77,13 @@ export default function App({ Component, pageProps }) {
 
 const StyledLoadingDiv = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0;
+  margin: -10px;
   padding: 0;
-  height: 130vh;
-  width: 130vw;
+  height: 100vh;
+  width: 100vw;
+  color: var(--color-quinary);
 
   background: rgb(10, 17, 40);
   background: -moz-linear-gradient(
@@ -87,8 +107,6 @@ const StyledLoadingDiv = styled.div`
       rgba(3, 64, 120, 1) 91%
     )
     center center fixed no-repeat;
-
-  background-size: cover;
 
   p {
     font-size: 1.2rem;
