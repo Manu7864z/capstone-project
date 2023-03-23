@@ -15,6 +15,8 @@ export default function Home({ data, activities, onDeleteActivity }) {
       "-" +
       new Date().toLocaleDateString("default", { day: "2-digit" })
   );
+  const hasActivities = activities.some(({ date }) => date === weekDay);
+  const activitiesForDay = activities.filter(({ date }) => date === weekDay);
 
   const [isCalenderVisiable, setIsCalenderVisiable] = useState(false);
 
@@ -41,7 +43,7 @@ export default function Home({ data, activities, onDeleteActivity }) {
   return (
     <StyledMain>
       <StyledData>
-        <h3>Weather today: {data?.current.condition.text} </h3>
+        <h3>Condition: {data?.current.condition.text} </h3>
         <h4>Temperature: {data?.current.temp_c} °C</h4>
         <h5>Forecast for the next 3 days</h5>
         <StyledUl>
@@ -63,39 +65,35 @@ export default function Home({ data, activities, onDeleteActivity }) {
         Today: {weekDay.slice(8, 10)}.{weekDay.slice(5, 7)}.
         {weekDay.slice(0, 4)}
       </StyledCalendarButton>
-
       {isCalenderVisiable ? (
         <StyledCalendar onClickDay={handleDateChange} />
       ) : null}
-
       <ul>
-        {activities.map(({ time, date, name, id }) => {
-          if (date === weekDay) {
-            return (
-              <li key={id}>
-                <h2>{name}</h2>
-                <p>
-                  Date: {date.slice(8, 10)}.{date.slice(5, 7)}.
-                  {date.slice(0, 4)}
-                </p>
-                <p>Time: {time} Uhr</p>
-                <StyledDiv>
-                  <label htmlFor="checkbox">Done?</label>
-                  <StyledCheckbox
-                    id="checkbox"
-                    name="checkbox"
-                    type="checkbox"
-                    onClick={() => handleCheckActivities(id)}
-                  />
-                </StyledDiv>
-              </li>
-            );
-          } else {
-            return null;
-          }
-        })}
+        {hasActivities ? (
+          activitiesForDay.map(({ time, date, name, id }) => (
+            <li key={id}>
+              <h2>{name}</h2>
+              <p>
+                Date: {date.slice(8, 10)}.{date.slice(5, 7)}.{date.slice(0, 4)}
+              </p>
+              <p>Time: {time} Uhr</p>
+              <StyledDiv>
+                <label htmlFor="checkbox">Done?</label>
+                <StyledCheckbox
+                  id="checkbox"
+                  name="checkbox"
+                  type="checkbox"
+                  onClick={() => handleCheckActivities(id)}
+                />
+              </StyledDiv>
+            </li>
+          ))
+        ) : (
+          <li>
+            <h2>Nothing planned today 😱</h2>
+          </li>
+        )}
       </ul>
-
       <StyledButton
         type="button"
         onClick={() => router.push("/activitiesForm")}
@@ -131,9 +129,9 @@ const StyledUl = styled.ul`
     transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s;
 
     &:hover {
-      background-color: var(--color-tertiary);
       color: var(--color-primary);
-      border: 2px outset whitesmoke;
+      border: 1px solid whitesmoke;
+      transform: scale(1.1);
     }
   }
 
@@ -179,8 +177,16 @@ const StyledCalendarButton = styled.button`
   top: 360px;
   left: 192px;
   width: 159.75px;
+  color: var(--color-primary);
+  backdrop-filter: blur(3px);
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: var(--border-radius);
+  box-shadow: 0px 35px 68px 0px rgba(10, 17, 40, 0.5),
+    inset 0px -5px 16px 0px rgba(10, 17, 40, 0.6),
+    inset 0px 11px 28px 0px rgb(255, 255, 255);
   &:hover {
     background-color: var(--color-primary);
+    cursor: pointer;
   }
 `;
 
@@ -189,9 +195,16 @@ const StyledButton = styled.button`
   top: 360px;
   left: 15px;
   width: 159.75px;
-
+  color: var(--color-primary);
+  backdrop-filter: blur(3px);
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: var(--border-radius);
+  box-shadow: 0px 35px 68px 0px rgba(10, 17, 40, 0.5),
+    inset 0px -5px 16px 0px rgba(10, 17, 40, 0.6),
+    inset 0px 11px 28px 0px rgb(255, 255, 255);
   &:hover {
     background-color: var(--color-primary);
+    cursor: pointer;
   }
 `;
 

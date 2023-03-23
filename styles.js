@@ -110,15 +110,19 @@ export const StyledHeader = styled.h1`
   align-items: center;
   margin: 0;
   position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
   height: 50px;
   width: 100%;
   font-size: 2.5rem;
   font-weight: 300;
   background: rgba(0, 0, 0, 0.37);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(5.5px);
+  backdrop-filter: blur(3.5px);
   -webkit-backdrop-filter: blur(5.5px);
-  border-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
   border: 1px solid rgba(255, 255, 255, 0.18);
 `;
 
