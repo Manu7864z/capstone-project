@@ -40,7 +40,7 @@ export default function List({
     <>
       <StyledH1>Your planned Activities:</StyledH1>
 
-      <ul>
+      <ul aria-label="List of planned Activities">
         {activities?.map(({ id, date, time, name }) => (
           <li key={id}>
             {editing === id ? (
@@ -54,22 +54,27 @@ export default function List({
                 <input type="date" name="date" defaultValue={date} />
                 <label htmlFor="time">Time: </label>
                 <input type="time" name="time" defaultValue={time} />
-                <button type="submit">Done</button>
+                <button aria-label="end-editing" type="submit">
+                  Done
+                </button>
               </StyledEditForm>
             ) : (
               <>
-                <h2>{name}</h2>
-                <p>
+                <h2 aria-label="Name of Activity">{name}</h2>
+                <p aria-label="date of planned Activity">
                   {date?.slice(8, 10)}.{date?.slice(5, 7)}.{date?.slice(0, 4)}
                 </p>
-                <p>{time}</p>
+                <p aria-label="time of planned Activity">{time}</p>
                 <StyledDeleteButton
+                  aria-label="delete-button"
                   type="button"
                   onClick={() => onDeleteActivity(id)}
                 >
                   X
                 </StyledDeleteButton>
-                <button onClick={() => onEditing(id)}>Edit</button>
+                <button aria-label="open-editing" onClick={() => onEditing(id)}>
+                  Edit
+                </button>
               </>
             )}
           </li>

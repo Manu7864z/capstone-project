@@ -10,8 +10,9 @@ export default function Navbar({ pathname }) {
   const { push } = useRouter();
 
   return (
-    <StyledNav>
+    <StyledNav aria-label="Navigation">
       <StyledLink
+        aria-label="new-activity"
         href="/activitiesForm"
         onClick={() => {
           push("/activitiesForm");
@@ -24,6 +25,7 @@ export default function Navbar({ pathname }) {
         )}
       </StyledLink>
       <StyledLink
+        aria-label="homepage"
         href="/homepage"
         onClick={() => {
           push("/homepage");
@@ -32,6 +34,7 @@ export default function Navbar({ pathname }) {
         {pathname === "/homepage" ? <AiFillHome /> : <AiOutlineHome />}
       </StyledLink>
       <StyledLink
+        aria-label="aboutpage"
         href="/about"
         onClick={() => {
           push("/about");

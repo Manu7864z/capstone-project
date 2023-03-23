@@ -7,16 +7,19 @@ export default function Start() {
   const router = useRouter();
 
   return (
-    <StyledMain>
-      <h1>WeatherPlanar</h1>
+    <StyledMain aria-labelledby="title">
+      <h1 id="title">WeatherPlanar</h1>
       <StyledLottie animationData={animationData} loop />
       <StyledDiv>
-        <p>
+        <p aria-label="Welcome-text">
           Hello there! In this Web-App you can plan your days and check out the
           weather regarding your recent location.
         </p>
       </StyledDiv>
-      <StyledButton onClick={() => router.push("/homepage")}>
+      <StyledButton
+        aria-label="go-to-homepage"
+        onClick={() => router.push("/homepage")}
+      >
         Get Started!
       </StyledButton>
     </StyledMain>

@@ -27,16 +27,18 @@ export default function ActivitiesForm({ setActivities, activities }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form aria-labelledby="title" onSubmit={handleSubmit}>
       <StyledFormElements>
-        <Styledh1>Add new Activities below: </Styledh1>
+        <Styledh1 id="title">Add new Activities below: </Styledh1>
         <label htmlFor="name">Name of Activity: </label>
         <input type="text" id="name" name="name" required />
         <label htmlFor="date">Date: </label>
         <input type="date" id="date" name="date" required />
         <label htmlFor="time">Time: </label>
-        <input type="time" name="time" required />
-        {submitMessageIsVisible && <p>Activity added! ✅</p>}
+        <input id="time" type="time" name="time" required />
+        {submitMessageIsVisible && (
+          <p aria-label="Submitted-successfully">Activity added! ✅</p>
+        )}
       </StyledFormElements>
       <StyledSubmitButton type="submit">Submit</StyledSubmitButton>
     </form>

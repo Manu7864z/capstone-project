@@ -21,8 +21,14 @@ export default function AboutPage({ personalInfo, setPersonalInfo }) {
     <>
       <StyledForm onSubmit={handleSubmit}>
         <label htmlFor="name">Enter your name: </label>
-        <input type="text" name="name" required defaultValue={name} />
-        <p> Hello my name is {name}. 😁</p>
+        <input
+          aria-label="name"
+          type="text"
+          name="name"
+          required
+          defaultValue={name}
+        />
+        <p aria-label="Username"> Hello my name is {name}. 😁</p>
         <label htmlFor="location">My recent location: </label>
         <select name="location" defaultValue={location}>
           <option value="Berlin">Berlin</option>
@@ -41,20 +47,28 @@ export default function AboutPage({ personalInfo, setPersonalInfo }) {
           <option value="Saarbrücken">Saarbrücken</option>
           <option value="Erfurt">Erfurt</option>
         </select>
-        <p> Today I am in {location}. 🚀</p>
-        <StyledButton type="submit">Save</StyledButton>
+        <p aria-label="recent-location"> Today I am in {location}. 🚀</p>
+        <StyledButton aria-label="Save-Button" type="submit">
+          Save
+        </StyledButton>
       </StyledForm>
-      <StyledSection>
-        <h2>Check out my Channels: </h2>
+      <StyledSection aria-labelledby="title">
+        <h2 id="title">Check out my Channels: </h2>
         <StyledDiv>
-          <StyledLink href="https://github.com/Manu7864z">
+          <StyledLink
+            aria-label="Link-to-Github"
+            href="https://github.com/Manu7864z"
+          >
             <AiFillGithub />
           </StyledLink>
-          <StyledLink href="https://www.linkedin.com/in/manuel-zropf-620500213/">
+          <StyledLink
+            aria-label="Link-to-LinkedIn"
+            href="https://www.linkedin.com/in/manuel-zropf-620500213/"
+          >
             <AiFillLinkedin />
           </StyledLink>
         </StyledDiv>
-        <p>By Manuel Zropf</p>
+        <p aria-label="Name-of-Creator">By Manuel Zropf</p>
       </StyledSection>
     </>
   );
