@@ -57,7 +57,7 @@ export default function App({ Component, pageProps }) {
             opacity: 0,
             clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)",
           }}
-          transition={{ duration: 0.75 }}
+          transition={{ duration: 0.3 }}
         >
           <Component
             {...pageProps}

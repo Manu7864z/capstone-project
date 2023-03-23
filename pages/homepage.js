@@ -177,8 +177,16 @@ const StyledCalendarButton = styled.button`
   top: 360px;
   left: 192px;
   width: 159.75px;
+  color: var(--color-primary);
+  backdrop-filter: blur(3px);
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: var(--border-radius);
+  box-shadow: 0px 35px 68px 0px rgba(10, 17, 40, 0.5),
+    inset 0px -5px 16px 0px rgba(10, 17, 40, 0.6),
+    inset 0px 11px 28px 0px rgb(255, 255, 255);
   &:hover {
     background-color: var(--color-primary);
+    cursor: pointer;
   }
 `;
 
@@ -187,9 +195,16 @@ const StyledButton = styled.button`
   top: 360px;
   left: 15px;
   width: 159.75px;
-
+  color: var(--color-primary);
+  backdrop-filter: blur(3px);
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: var(--border-radius);
+  box-shadow: 0px 35px 68px 0px rgba(10, 17, 40, 0.5),
+    inset 0px -5px 16px 0px rgba(10, 17, 40, 0.6),
+    inset 0px 11px 28px 0px rgb(255, 255, 255);
   &:hover {
     background-color: var(--color-primary);
+    cursor: pointer;
   }
 `;
 
