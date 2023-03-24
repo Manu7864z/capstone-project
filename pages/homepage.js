@@ -43,9 +43,13 @@ export default function Home({ data, activities, onDeleteActivity }) {
   return (
     <StyledMain>
       <StyledData>
-        <h3>Condition: {data?.current.condition.text} </h3>
-        <h4>Temperature: {data?.current.temp_c} °C</h4>
-        <h5>Forecast for the next 3 days</h5>
+        <h3 aria-label="weather-condition-today">
+          Condition: {data?.current.condition.text}{" "}
+        </h3>
+        <h4 aria-label="temperature-today">
+          Temperature: {data?.current.temp_c} °C
+        </h4>
+        <h5 aria-label="3-days-forecast">Forecast for the next 3 days</h5>
         <StyledUl>
           {weatherData?.map(({ date, day }) => {
             return (
@@ -59,16 +63,20 @@ export default function Home({ data, activities, onDeleteActivity }) {
             );
           })}
         </StyledUl>
-        <p>Check your planned Activities:</p>
+        <p aria-label="planned-activities">Check your planned Activities:</p>
       </StyledData>
-      <StyledCalendarButton type="button" onClick={handleShowCalendar}>
+      <StyledCalendarButton
+        aria-label="open-calendar"
+        type="button"
+        onClick={handleShowCalendar}
+      >
         Today: {weekDay.slice(8, 10)}.{weekDay.slice(5, 7)}.
         {weekDay.slice(0, 4)}
       </StyledCalendarButton>
       {isCalenderVisiable ? (
-        <StyledCalendar onClickDay={handleDateChange} />
+        <StyledCalendar aria-label="calendar" onClickDay={handleDateChange} />
       ) : null}
-      <ul>
+      <ul aria-label="list-of-todays-activities">
         {hasActivities ? (
           activitiesForDay.map(({ time, date, name, id }) => (
             <li key={id}>
@@ -89,7 +97,7 @@ export default function Home({ data, activities, onDeleteActivity }) {
             </li>
           ))
         ) : (
-          <li>
+          <li aria-label="nothing-planned-yet">
             <h2>Nothing planned today 😱</h2>
           </li>
         )}
