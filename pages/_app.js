@@ -4,8 +4,7 @@ import useSWR from "swr";
 import useLocalStorageState from "use-local-storage-state";
 import Navbar from "@/components/NavBar";
 import { useRouter } from "next/router";
-import { StyledHeader } from "@/styles";
-import styled from "styled-components";
+import { StyledHeader, StyledLoadingDiv } from "@/styles";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function App({ Component, pageProps }) {
@@ -23,7 +22,7 @@ export default function App({ Component, pageProps }) {
   const fetcher = (url) => fetch(url).then((res) => res.json());
 
   const { data, error, isLoading } = useSWR(URL, fetcher);
-  if (error) return <div>failed to load</div>;
+  if (error) return <StyledLoadingDiv>failed to load</StyledLoadingDiv>;
   if (isLoading)
     return (
       <StyledLoadingDiv>
@@ -74,43 +73,3 @@ export default function App({ Component, pageProps }) {
     </>
   );
 }
-
-const StyledLoadingDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: -10px;
-  padding: 0;
-  height: 100vh;
-  width: 100vw;
-  color: var(--color-quinary);
-
-  background: rgb(10, 17, 40);
-  background: -moz-linear-gradient(
-      15deg,
-      rgba(10, 17, 40, 1) 22%,
-      rgba(0, 31, 84, 1) 66%,
-      rgba(3, 64, 120, 1) 91%
-    )
-    center center fixed no-repeat;
-  background: -webkit-linear-gradient(
-      15deg,
-      rgba(10, 17, 40, 1) 22%,
-      rgba(0, 31, 84, 1) 66%,
-      rgba(3, 64, 120, 1) 91%
-    )
-    center center fixed no-repeat;
-  background: linear-gradient(
-      15deg,
-      rgba(10, 17, 40, 1) 22%,
-      rgba(0, 31, 84, 1) 66%,
-      rgba(3, 64, 120, 1) 91%
-    )
-    center center fixed no-repeat;
-
-  p {
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: var(--color-quinary);
-  }
-`;

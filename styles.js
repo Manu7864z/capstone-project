@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
+import Calendar from "react-calendar";
 
 export default createGlobalStyle`
   *,
@@ -142,4 +143,142 @@ export const StyledNav = styled.nav`
   -webkit-backdrop-filter: blur(2px);
   border-radius: var(--border-radius);
   border-top: 2px outset rgba(255, 255, 255, 0.18);
+`;
+
+export const StyledCalendar = styled(Calendar)`
+  height: 290px;
+  width: 250px;
+  display: block;
+  position: absolute;
+  top: 230px;
+  right: 20px;
+  border: 2px outset grey;
+  border-radius: 5px;
+  background-color: var(--color-primary);
+  color: var(--color-quinary);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.5);
+  z-index: 1;
+
+  .react-calendar__navigation {
+    background-color: var(--color-tertiary);
+  }
+
+  .react-calendar__navigation__label {
+    color: var(--color-quinary);
+  }
+
+  .react-calendar__navigation__arrow {
+    color: var(--color-quinary);
+  }
+
+  .react-calendar__month-view__days__day {
+    color: var(--color-quinary);
+
+    &:hover {
+      background-color: var(--color-secondary);
+      color: var(--color-quaternary);
+    }
+  }
+
+  .react-calendar__month-view__days__day--neighboringMonth {
+    color: var(--color-quinary);
+  }
+
+  .react-calendar__month-view__days__day--weekend {
+    color: red;
+
+    &:hover {
+      background-color: var(--color-secondary);
+      color: var(--color-quaternary);
+    }
+  }
+
+  .react-calendar__month-view__days__day--today {
+    color: var(--color-quinary);
+    background-color: var(--color-quaternary);
+  }
+
+  .react-calendar__tile--now {
+    background-color: var(--color-tertiary);
+    color: var(--color-quinary);
+  }
+`;
+
+export const StyledCalendarButton = styled.button`
+  position: absolute;
+  top: 360px;
+  left: 192px;
+  width: 159.75px;
+  color: var(--color-primary);
+  backdrop-filter: blur(3px);
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: var(--border-radius);
+  box-shadow: 0px 35px 68px 0px rgba(10, 17, 40, 0.5),
+    inset 0px -5px 16px 0px rgba(10, 17, 40, 0.6),
+    inset 0px 11px 28px 0px rgb(255, 255, 255);
+  &:hover {
+    background-color: var(--color-primary);
+    cursor: pointer;
+  }
+`;
+
+export const StyledButton = styled.button`
+  position: absolute;
+  top: 360px;
+  left: 15px;
+  width: 159.75px;
+  color: var(--color-primary);
+  backdrop-filter: blur(3px);
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: var(--border-radius);
+  box-shadow: 0px 35px 68px 0px rgba(10, 17, 40, 0.5),
+    inset 0px -5px 16px 0px rgba(10, 17, 40, 0.6),
+    inset 0px 11px 28px 0px rgb(255, 255, 255);
+  &:hover {
+    background-color: var(--color-primary);
+    cursor: pointer;
+  }
+`;
+
+export const StyledMain = styled.main`
+  margin-bottom: 55px;
+`;
+
+export const StyledLoadingDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -10px;
+  padding: 0;
+  height: 45rem;
+  width: 38rem;
+
+  background: rgb(10, 17, 40);
+  background: -moz-linear-gradient(
+      15deg,
+      rgba(10, 17, 40, 1) 22%,
+      rgba(0, 31, 84, 1) 66%,
+      rgba(3, 64, 120, 1) 91%
+    )
+    center center fixed no-repeat;
+  background: -webkit-linear-gradient(
+      15deg,
+      rgba(10, 17, 40, 1) 22%,
+      rgba(0, 31, 84, 1) 66%,
+      rgba(3, 64, 120, 1) 91%
+    )
+    center center fixed no-repeat;
+  background: linear-gradient(
+      15deg,
+      rgba(10, 17, 40, 1) 22%,
+      rgba(0, 31, 84, 1) 66%,
+      rgba(3, 64, 120, 1) 91%
+    )
+    center center fixed no-repeat;
+
+  p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--color-quinary);
+  }
 `;
