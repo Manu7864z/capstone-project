@@ -29,7 +29,7 @@ Enough talking! Here you can look at some impressions!
     
 ## Getting Started
 
-1. Clone the repository: git clone https://git@github.com:TuncAlt/capstone-project.git
+1. Clone the repository: git clone https://git@github.com:Manu7864z/capstone-project.git
 2. Open the folder in VS Code
 3. Install dependencies: npm install
 4. Start the development server: npm run dev
