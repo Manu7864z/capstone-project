@@ -18,11 +18,13 @@ Enough talking! Here you can look at some impressions!
 - JavaScript 
 - Next.js
 - Jest
+- HTML
+- CSS
 - npm:
-
     - react-calendar
     - framer-motion
     - lottie-react
+    - styled-components
     
     
 ## Getting Started
