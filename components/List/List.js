@@ -12,7 +12,7 @@ export default function List({
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
-    handleEditDone(event, id, formData);
+    handleEditDone(id, formData);
     form.reset();
   }
 
@@ -54,7 +54,11 @@ export default function List({
                 <input type="date" name="date" defaultValue={date} />
                 <label htmlFor="time">Time: </label>
                 <input type="time" name="time" defaultValue={time} />
-                <button aria-label="end-editing" type="submit">
+                <button
+                  aria-label="end-editing"
+                  type="submit"
+                  onClick={() => handleEditDone(id)}
+                >
                   Done
                 </button>
               </StyledEditForm>
